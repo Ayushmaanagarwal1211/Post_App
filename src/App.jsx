@@ -7,6 +7,7 @@ import { getDataFromBackend } from "./service/localstorage"
 import Theme from "./components/Theme"
 function App() {
   const dispatch = useDispatch()
+  const user_name = "Ayushmaan"
   const theme = useSelector(state=>selectTheme(state))
   useEffect(()=>{
       dispatch(fill(getDataFromBackend()))
@@ -17,9 +18,9 @@ function App() {
   return (
     <>
     <div className={`${theme ? "bg-white" : "bg-black"} min-h-[100vh] mt-0 pt-4`}>
-      <Theme theme={theme} toggleTheme={toggleTheme}/>
-      <Header theme={theme}/>
-      <Posts/>
+      <Theme  theme={theme} toggleTheme={toggleTheme}/>
+      <Header user_name={user_name} theme={theme}/>
+      <Posts user_name={user_name}/>
       </div>
     </>
   )

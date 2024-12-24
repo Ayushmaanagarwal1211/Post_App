@@ -5,12 +5,11 @@ import Comment from './Comment.jsx';
 import { add_comment, delete_comment, edit_comment, selectTheme } from '../reducer/postsSlice.js';
 import { comment } from 'postcss';
 
-export default function Post({ post, handleLike }) {
-  const user_name = "Ayushmaan"
+export default function Post({ post, handleLike ,user_name}) {
   const dispatch = useDispatch();
   const [comment_text, setCommentText] = useState("");
   const theme = useSelector(state => selectTheme(state))
-  
+
   function handleAddComment() {
     if (comment_text.trim()) {
       dispatch(add_comment({ id: post.id, comment_text, user_name, user_profile_picture:"" }));
@@ -57,7 +56,7 @@ export default function Post({ post, handleLike }) {
       </div>
       <div className="mt-4 space-y-3 h-[160px] overflow-y-scroll">
         {post.comments.map((data) => (
-          <Comment key={data.comment_id} handleDelete={handleDeleteComment} handleEdit={handleEditComment} comment={data} />
+          <Comment user_name={user_name} key={data.comment_id} handleDelete={handleDeleteComment} handleEdit={handleEditComment} comment={data} />
         ))}
       </div>
     </div>

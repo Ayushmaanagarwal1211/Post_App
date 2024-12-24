@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
 
-export default function Comment({ comment, handleEdit, handleDelete }) {
+export default function Comment({ comment, handleEdit, handleDelete,user_name }) {
   const time = new Date(comment.time_stamp);
   const date = new Date(comment.time_stamp);
   const [comment_text, setCommentText] = useState(comment.comment_text);
@@ -33,7 +33,7 @@ export default function Comment({ comment, handleEdit, handleDelete }) {
               className="text-blue-600 hover:text-blue-800 transition"
               title="Edit Comment"
             >
-              <FaPenSquare className="text-lg" />
+            {user_name == comment.user_name &&   <FaPenSquare className="text-lg" />}
             </button>
           ) : (
             <button
@@ -48,7 +48,8 @@ export default function Comment({ comment, handleEdit, handleDelete }) {
             className="text-red-600 hover:text-red-800 transition"
             title="Delete Comment"
           >
-            <FaTrashAlt className="text-lg" />
+           {user_name == comment.user_name &&  <FaTrashAlt className="text-lg" />
+}
           </button>
         </div>
       </div>

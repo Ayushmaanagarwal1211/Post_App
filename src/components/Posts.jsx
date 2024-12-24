@@ -4,7 +4,7 @@ import { like, selectPosts } from '../reducer/postsSlice';
 import Post from './Post';
 import { setDataToBackend } from '../service/localstorage';
 
-export default function Posts() {
+export default function Posts({user_name}) {
   const posts = useSelector((state) => selectPosts(state));
   const dispatch = useDispatch();
   setDataToBackend(posts)
@@ -16,7 +16,7 @@ export default function Posts() {
   return (
     <div className="grid grid-cols-2 w-[70%] m-auto items-center space-y-6 mt-4">
       {posts.map((data) => (
-        <Post key={data.id} post={data} handleLike={handleLike} />
+        <Post user_name={user_name} key={data.id} post={data} handleLike={handleLike} />
       ))}
     </div>
   );
