@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { selectUserName } from "../reducer/postsSlice";
 
-export default function Comment({ comment, handleEdit, handleDelete,user_name }) {
+export default function Comment({ comment, handleEdit, handleDelete }) {
   const time = new Date(comment.time_stamp);
   const date = new Date(comment.time_stamp);
   const [comment_text, setCommentText] = useState(comment.comment_text);
   const [isEdit, setIsEdit] = useState(false);
-
+  const user_name = useSelector(state=>selectUserName(state))
+  
   function handleSubmit() {
     handleEdit(comment.comment_id, comment_text);
     setIsEdit(false);

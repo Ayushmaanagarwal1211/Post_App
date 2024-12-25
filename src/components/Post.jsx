@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { FaHeart } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import Comment from './Comment.jsx';
-import { add_comment, delete_comment, edit_comment, selectTheme } from '../reducer/postsSlice.js';
+import { add_comment, delete_comment, edit_comment, selectTheme, selectUserName } from '../reducer/postsSlice.js';
 import { comment } from 'postcss';
 
-export default function Post({ post, handleLike ,user_name}) {
+export default function Post({ post, handleLike }) {
   const dispatch = useDispatch();
   const [comment_text, setCommentText] = useState("");
   const theme = useSelector(state => selectTheme(state))
-
+  const user_name = useSelector(state => selectUserName(state))
+  
   function handleAddComment() {
     if (comment_text.trim()) {
       dispatch(add_comment({ id: post.id, comment_text, user_name, user_profile_picture:"" }));
