@@ -3,8 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 const slice = createSlice({
     initialState:{
         posts : [],
-        theme : true,
-        user_name : "Ayushmaan"
+        theme : true
     },
     name : "Posts",
     reducers : {
